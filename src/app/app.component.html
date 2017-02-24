@@ -1,0 +1,11 @@
+<div *ngIf="loginStatus==true">
+    <app-layout></app-layout>
+</div>
+<div *ngIf="loginStatus==false">
+    <!--<a routerLink="/login" routerLinkactive="active">LOGIN</a>
+    <a routerLink="/candidateRegister" routerLinkactive="active">REG</a>-->
+    <router-outlet></router-outlet>
+</div>
+
+<!--
+<app-candidate-register></app-candidate-register>-->

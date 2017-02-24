@@ -1,0 +1,193 @@
+<!--Header start-->
+<nav class="nav-extended">
+    <div class="nav-wrapper green">
+        <a href="/">
+            <p class="logo">Samarthya</p>
+        </a>
+    </div>
+    <div class="nav-content center-align teal ">
+        <div class="nav-title largeScreen" *ngFor="let lang of languages">
+            <button md-button>{{lang.name}}</button>
+        </div>
+    </div>
+</nav>
+
+<!--language button for samll screen-->
+<div class="fixed-action-btn horizontal langBtn">
+    <a class="btn-floating btn-large red">
+        <i class="material-icons">translate</i>
+    </a>
+    <ul>
+        <li *ngFor="let lang of languages">
+            <a class="btn-floating red "><i class="material-icons">translate</i></a>
+        </li>
+    </ul>
+</div>
+
+<!--Register card-->
+<div>
+    <md-grid-list cols="1" rowHeight="1400">
+        <md-grid-tile>
+            <!--card Start-->
+            <md-card class="loginCard blue-grey-text">
+                <md-card-title>Register</md-card-title>
+                <md-card-content>
+                    <form class="col s12" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+                        <!--First Name-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">perm_identity</i>
+                                <label for="fname">First Name*</label>
+                                <input formControlName="fname" id="fname" type="text" class="validate" />
+                                <app-control-messages [control]="userForm.controls.fname" class="errorStyle"></app-control-messages>
+                            </div>
+                        </div>
+
+                        <!--Last Name-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">perm_identity</i>
+                                <label for="lname">Last Name*</label>
+                                <input formControlName="lname" id="lname" type="text" class="validate" />
+                                <app-control-messages [control]="userForm.controls.lname" class="errorStyle"></app-control-messages>
+                            </div>
+                        </div>
+
+                        <!--Gender-->
+                        <div class="row">
+                            <i class="material-icons prefix formIcons">wc</i>
+                            <span>
+                                <md-radio-group formControlName="gender">
+                                    <md-radio-button  class="gender" value="male">Male</md-radio-button>
+                                    <md-radio-button  class="gender" value="female">Female</md-radio-button>
+                                </md-radio-group>
+                            </span>
+                        </div>
+
+                        <!--Registration ID-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">assignment_ind</i>
+                                <label for="regId">Registration Id*</label>
+                                <input formControlName="regId" id="regId" type="text" class="validate" />
+                                <app-control-messages [control]="userForm.controls.regId" class="errorStyle"></app-control-messages>
+                            </div>
+                        </div>
+
+                        <!--Date of Birth
+                        <a class="c-btn c-datepicker-btn">
+                            <span class="material-icon">Click me</span>
+                        </a>-->
+
+                        <!--Email-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">mail</i>
+                                <label for="email">Email*</label>
+                                <input formControlName="email" id="email" type="text" class="validate" />
+                                <app-control-messages [control]="userForm.controls.email" class="errorStyle"></app-control-messages>
+                            </div>
+                        </div>
+
+                        <!--Adhar-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">chrome_reader_mode</i>
+                                <label for="aadhar">Aadhar No.</label>
+                                <input formControlName="aadhar" id="aadhar" type="text" class="validate" />
+                                <app-control-messages [control]="userForm.controls.aadhar" class="errorStyle"></app-control-messages>
+                            </div>
+                        </div>
+
+                        <!--Mobile No-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">call</i>
+                                <label for="mob">Mobile*</label>
+                                <input formControlName="mob" id="mob" type="text" class="validate" />
+                                <app-control-messages [control]="userForm.controls.mob" class="errorStyle"></app-control-messages>
+                            </div>
+                        </div>
+
+                        <!--passowrd-->
+                        <div class="row">
+                            <div class="input-field ">
+                                <i class="material-icons prefix formIcons">lock</i>
+                                <label for="password">Password*</label>
+                                <input formControlName="password" id="password" type="password" class="validate" #password (blur)="passwordValue(password.value)" />
+                                <app-control-messages [control]="userForm.controls.password" class="errorStyle"></app-control-messages>
+
+                            </div>
+                        </div>
+
+                        <!--confirm password-->
+                        <div class="row">
+                            <div class="input-field">
+                                <i class="material-icons prefix formIcons">lock</i>
+                                <label for="conPassword">Confirm Password*</label>
+                                <input formControlName="conPassword" id="conPassword" type="password" class="validate" #conPassword (blur)="conPasswordValue(conPassword.value)" />
+                                <div *ngIf="passwordMatchWarning" class="errorStyle">{{passwordMatchWarning}}</div>
+                            </div>
+                        </div>
+
+                        <!--Profession-->
+                        <div class="row input-field">
+                            <div class="">
+                                <i class="material-icons prefix formIcons">layers</i>
+                            </div>
+                            <div class="dropdown">
+                                <md-select placeholder="Profession" formControlName="profession" class="dropdown formIcons right dropdownWidth">
+                                    <md-option *ngFor="let pro of profession" [value]="pro.value">
+                                        {{ pro.name }}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                        </div>
+
+                        <!--location-->
+                        <div class="row input-field">
+                            <div class="">
+                                <i class="material-icons prefix formIcons">location_on</i>
+                            </div>
+                            <div class="dropdown">
+                                <md-select placeholder="Location" formControlName="location" class="dropdown formIcons right dropdownWidth">
+                                    <md-option *ngFor="let loc of locations" [value]="loc.value">
+                                        {{ loc.name }}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                        </div>
+
+                        <!--placement center-->
+                        <div class="row input-field">
+                            <div class="">
+                                <i class="material-icons prefix formIcons">person_pin_circle</i>
+                            </div>
+                            <div class="dropdown">
+                                <md-select placeholder="Placement Center" formControlName="placementCenter" class="dropdown formIcons right dropdownWidth">
+                                    <md-option *ngFor="let center of placementCenter" [value]="center.value">
+                                        {{ center.name }}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                        </div>
+
+                        <!--Register Button-->
+                        <div class="row center-align">
+                            <button type="submit" class="waves-effect btn-large green signInBtn" [disabled]="!userForm.valid">Register</button>
+                        </div>
+
+                    </form>
+                </md-card-content>
+            </md-card>
+        </md-grid-tile>
+    </md-grid-list>
+</div>
+
+<!--footer starts-->
+<!--<footer class="page-footer green">
+    <div class="center-align white-text">
+        <p>© Copyright Samarthya 2017</p>
+    </div>
+</footer>-->
