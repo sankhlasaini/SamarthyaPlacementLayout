@@ -8,7 +8,7 @@ var smptp = require('smtp-server');
 var rand, host, link; //verify code
 //var smtpTransport1 = require('./nodemailer/lib/smtp-transport');
 var smtpTransport = require('nodemailer-smtp-transport');
-console.log("hahaha");
+
 var transporter = nodemailer.createTransport(smtpTransport({
     service: "Yahoo",
     //host: "smtp.gmail.com",
@@ -22,6 +22,10 @@ var transporter = nodemailer.createTransport(smtpTransport({
 //var nodemailer = require("nodemailer");
 let app = express();
 
+var redirectLink = '';
+var mailBody = '';
+var userMail = '';
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -34,51 +38,49 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
     var object1 = req.body.json;
     var jsonobj = JSON.parse(object1);
+    redirectLink = jsonobj.redirect;
+    userMail = jsonobj.to;
+    mailBody = jsonobj.mailBody;
     //------------verify-----------
     rand = Math.floor((Math.random() * 100) + 54);
     host = req.get('host');
     link = "http://" + req.get('host') + "/verify?id=" + rand;
-    console.log(link);
+
     //----------verify------------------
-    console.log(jsonobj.to + "json object");
     var mailOptions = {
         from: "sheenamnarula1993@yahoo.com",
         to: jsonobj.to,
         subject: jsonobj.subject,
-
-        html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+        html: "Hello,<br>" + mailBody + "<br><a href=" + link + ">Click here to verify</a>"
     }
-    console.log(mailOptions.to);
-    console.log(mailOptions.from);
-    console.log(mailOptions.subject);
-    console.log(mailOptions.text);
+    console.log("to : " + mailOptions.to);
+    console.log("from : " + mailOptions.from);
+    console.log("sub : " + mailOptions.subject);
+    console.log("text : " + mailOptions.text);
+    console.log("link :" + link);
     // res.send(mailOptions);
-    console.log("sending1")
     mailOptions1 = mailOptions;
     transporter.sendMail(mailOptions, function(error, response) {
         if (error) {
             console.log("sending erroer part ", error);
             res.end("error");
         } else {
-            console.log("sendiiingggggggg")
-            console.log("Message sent: " + response.message);
-            console.log("hahaha");
+            console.log("Sending Mail...")
             res.end("sent");
         }
     });
-
 });
 
 app.get('/verify', function(req, res) {
-    console.log(req.protocol + ":/" + req.get('host'));
+    console.log(req.protocol + "://" + req.get('host'));
     if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
         console.log("Domain is matched. Information is from Authentic email");
         if (req.query.id == rand) {
-            console.log("email is verified");
-            res.redirect("http://localhost:4200/candidateRegister");
+            console.log("Email is verified");
+            res.redirect(redirectLink + '/' + userMail);
             res.end("<h1>Email " + mailOptions1.to + " is been Successfully verified");
         } else {
-            console.log("email is not verified");
+            console.log("Email is not verified");
             res.end("<h1>Bad Request</h1>");
         }
     } else {

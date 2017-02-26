@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { JsonDataService } from '../../services/json-data.service';
+import { Router, ActivatedRoute, Params, Data } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -18,30 +19,35 @@ export class CandidateRegisterComponent implements OnInit {
   public locations = [];
   public placementCenter = [];
   public userForm: FormGroup;
+  public emailId = '';
 
-  constructor( @Inject(FormBuilder) fb: FormBuilder, private JsonDataService: JsonDataService) {
+  ngOnInit() {
+    // getting languages and form data from json file 
+    this.JsonDataService.getLanguages().subscribe(resJsonData => this.getdata(resJsonData));
+    this.emailId = this.route.snapshot.params['id'];
+    this.route.snapshot.data['type'];
+  }
+
+  constructor( @Inject(FormBuilder) fb: FormBuilder, private JsonDataService: JsonDataService, private route: ActivatedRoute,
+    private router: Router) {
     // register candidate form
     this.userForm = fb.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       gender: ['male', Validators.required],
-      email: ['', [Validators.required, ValidationService.emailValidator]],
+      email: [''],
       regId: ['', Validators.required],
       // dob:'',
       aadhar: ['', [Validators.required, ValidationService.aadharValidator]],
       mob: ['', [Validators.required, ValidationService.mobValidator]],
       password: ['', [Validators.required, ValidationService.passwordValidator]],
-      conPassword: ['', [Validators.required]],
+      conPassword: ['', [Validators.required, ValidationService.passwordValidator]],
       profession: ['', [Validators.required]],
       location: ['', [Validators.required]],
       placementCenter: ['', [Validators.required]]
     });
   }
 
-  ngOnInit() {
-    // getting languages and form data from json file 
-    this.JsonDataService.getLanguages().subscribe(resJsonData => this.getdata(resJsonData));
-  }
   getdata(jsonData) {
     this.jsonObj = jsonData;
     this.languages = this.jsonObj['languages'];
@@ -49,7 +55,6 @@ export class CandidateRegisterComponent implements OnInit {
     this.locations = this.jsonObj['locations'];
     this.placementCenter = this.jsonObj['placementCenter'];
   }
-
 
   // password confirm Validators
   password: string = "";
@@ -60,14 +65,17 @@ export class CandidateRegisterComponent implements OnInit {
   conPasswordValue(conPass) {
     if (this.password != conPass) {
       this.passwordMatchWarning = 'Password Not Match';
+      (<HTMLInputElement>document.getElementById("resetBtn")).disabled = true;
     }
     else {
       this.passwordMatchWarning = '';
+      // (<HTMLInputElement> document.getElementById("resetBtn")).disabled = false;
     }
   }
 
   // on form submit
   onSubmit() {
+    this.userForm.value.email = this.emailId;
     console.log(this.userForm.value);
   }
 }

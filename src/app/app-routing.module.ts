@@ -9,19 +9,20 @@ import { EventPostComponent } from './components/event-post/event-post.component
 import { JobPostComponent } from './components/job-post/job-post.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 // routes
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'aboutUs', component: AboutUsComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'candidateRegister', component: CandidateRegisterComponent },
+  { path: 'candidateRegister/:id', component: CandidateRegisterComponent, data: { type: 'edit' } },
   { path: 'candidateSearch', component: CandidateSearchComponent },
   { path: 'eventPost', component: EventPostComponent },
   { path: 'jobPost', component: JobPostComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'passwordReset/:id', component: PasswordResetComponent, data: { type: 'edit' } }
 ];
 
 @NgModule({
@@ -40,5 +41,6 @@ export const routingComponents = [
   CandidateSearchComponent,
   EventPostComponent,
   JobPostComponent,
-  LogoutComponent
+  LogoutComponent,
+  PasswordResetComponent
 ];

@@ -2,26 +2,23 @@
     line-height: unset;
 }
 
-.dropdown {
-    padding-left: 22px;
-    padding-top: 5px;
-    padding-bottom: 20px;
-}
-
-.dropdownWidth {
-    width: 100%;
+.logo {
+    text-align: center;
+    margin: auto;
+    font-size: 30px;
+    color: whitesmoke
 }
 
 md-select {
     color: red;
 }
 
-.gender {
-    padding: 10px;
+.logo:hover {
+    color: white;
 }
 
 .loginCard {
-    width: 700px;
+    width: 600px;
     top: 0px;
 }
 
@@ -43,6 +40,22 @@ md-card-title {
     width: 100%;
 }
 
+.nav-title {
+    padding: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+    align-content: center;
+}
+
+nav {
+    position: fixed;
+    z-index: 10;
+}
+
+
+/*error display in form*/
+
 .errorStyle {
     display: block;
     position: absolute;
@@ -53,10 +66,13 @@ md-card-title {
     color: #F44336;
 }
 
+
+/*floating language btn for small screen*/
+
 .fixed-action-btn {
     position: absolute;
-    right: 0px;
-    top: 55px;
+    right: 2px;
+    top: 67px;
     bottom: unset;
     color: white;
     z-index: 1;
@@ -79,6 +95,9 @@ md-card-title {
 .fixed-action-btn ul {
     bottom: unset;
 }
+
+
+/*form error colors*/
 
 input.ng-valid {
     border-bottom: 1px solid green;
@@ -115,7 +134,11 @@ input.ng-pristine {
     }
 }
 
-@media (min-width: 370px) {}
+@media (min-width: 370px) {
+    .page-footer {
+        bottom: 0px;
+    }
+}
 
 
 /*for Medium screens*/
@@ -158,5 +181,22 @@ for large screens*/
     }
     .loginCard {
         top: 50px;
+    }
+}
+
+@media (min-height: 10px) {
+    .page-footer {
+        margin: 0px;
+        text-align: center;
+    }
+}
+
+@media (min-height: 1000px) {
+    .page-footer {
+        margin: 0px;
+        position: absolute;
+        bottom: 0px;
+        text-align: center;
+        width: 100%;
     }
 }

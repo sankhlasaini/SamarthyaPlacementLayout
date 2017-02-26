@@ -13,8 +13,11 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ControlMessagesComponent } from './components/control-messages/control-messages.component';
 import { ValidationService } from 'app/services/validation.service';
+import { JsonDataService } from 'app/services/json-data.service';
 import { EmailService } from 'app/services/email.service';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { LoginLayoutComponent } from './components/login-layout/login-layout.component';
+
 
 @NgModule({
   imports: [
@@ -25,7 +28,7 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [ValidationService, EmailService],
+  providers: [ValidationService, EmailService, JsonDataService],
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
@@ -35,7 +38,8 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     LoginComponent,
     LayoutComponent,
     ControlMessagesComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    LoginLayoutComponent
   ]
 })
 export class AppModule { }
