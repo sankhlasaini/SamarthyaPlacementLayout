@@ -1,0 +1,102 @@
+{
+    "candidates": [{
+            "id": 1
+        },
+        {
+            "fname": "",
+            "lname": "",
+            "gender": "male",
+            "email": "sankhlassadaini@gmail.com",
+            "regId": "",
+            "aadhar": "",
+            "mob": "",
+            "password": "",
+            "conPassword": "",
+            "profession": "",
+            "location": "",
+            "placementCenter": "",
+            "id": 2
+        },
+        {
+            "fname": "Divesh",
+            "lname": "Sankhla",
+            "gender": "male",
+            "email": "sankhlasasdfdaini@gmail.com",
+            "regId": "adasd3",
+            "aadhar": "123123123123",
+            "mob": "7742693445",
+            "password": "asd123",
+            "conPassword": "asd123",
+            "profession": "logistic",
+            "location": "whitefield",
+            "placementCenter": "pune",
+            "id": 3
+        },
+        {
+            "fname": "Divesh",
+            "lname": "Sankhla",
+            "gender": "male",
+            "email": "sankhlasainfdi@gmail.com",
+            "regId": "adasd3",
+            "aadhar": "123123123123",
+            "mob": "7742693445",
+            "password": "asd123",
+            "conPassword": "asd123",
+            "profession": "fullStackDev",
+            "location": "koramangla",
+            "placementCenter": "pune",
+            "id": 4
+        },
+        {
+            "fname": "Divesh",
+            "lname": "Sankhla",
+            "gender": "male",
+            "email": "sankhlasaini@gmail.com",
+            "regId": "asd34",
+            "aadhar": "123123123123",
+            "mob": "7742693445",
+            "password": "asd123",
+            "conPassword": "asd123",
+            "profession": "bpo",
+            "location": "koramangla",
+            "placementCenter": "bangalore",
+            "id": 5
+        },
+        {
+            "fname": "Divesh",
+            "lname": "Sankhla",
+            "gender": "male",
+            "email": "sankhlasaini@gmail.com",
+            "regId": "aaaaaaaaaaaaaaaaaaaaa",
+            "aadhar": "123123123123",
+            "mob": "7742693445",
+            "password": "asd123",
+            "conPassword": "asd123",
+            "profession": "fullStackDev",
+            "location": "koramangla",
+            "placementCenter": "bangalore",
+            "id": 6
+        },
+        {
+            "fname": "Divesh",
+            "lname": "Sankhla",
+            "gender": "male",
+            "email": "sankh@gmail.com",
+            "regId": "sdasdsadsadsad",
+            "aadhar": "123123123123",
+            "mob": "7742693445",
+            "password": "asd123",
+            "conPassword": "asd123",
+            "profession": "bpo",
+            "location": "koramangla",
+            "placementCenter": "niit",
+            "id": 7
+        },
+        {
+            "id": 8
+        },
+        {
+            "id": 9
+        }
+    ]
+}
